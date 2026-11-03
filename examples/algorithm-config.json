@@ -1,0 +1,7 @@
+{
+  "cyclon": {"view_size": 24, "exchange_size": 8},
+  "hyparview": {"active_size": 5, "view_size": 24},
+  "metropolis_hastings": {"walk_length": 12},
+  "mrwb": {"walk_length": 12},
+  "peerswap": {"peerswap_rate": 0.25}
+}

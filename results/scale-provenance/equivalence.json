@@ -1,0 +1,35 @@
+{
+  "from_sha256": "a010e1afc0ab4f8231ac62d7f71872edf3f1c60f5b5e2b57938576ae6392dfee",
+  "to_sha256": "fa69d8db0a65f8c8f85d2c062a270ba28ab83e702c28a482a199552027e123ae",
+  "checks": [
+    {
+      "job_key": "f26c72a31558ed0a3f2d",
+      "reference": "results/large-control/runs/f26c72a31558ed0a3f2d.json.gz",
+      "equal": true,
+      "elapsed_seconds": 17.71219554101117,
+      "old_seconds": 59.739674312993884
+    },
+    {
+      "job_key": "2ad5545097acff8e6b91",
+      "reference": "results/large-control/runs/2ad5545097acff8e6b91.json.gz",
+      "equal": true,
+      "elapsed_seconds": 2.576290568104014,
+      "old_seconds": 7.348491664044559
+    },
+    {
+      "job_key": "e822b434a1bc1e064b41",
+      "reference": "results/large-control/runs/e822b434a1bc1e064b41.json.gz",
+      "equal": true,
+      "elapsed_seconds": 9.192158024990931,
+      "old_seconds": 26.234306528931484
+    },
+    {
+      "job_key": "8fb3b155fb61cd6daf25",
+      "reference": "results/large/runs/8fb3b155fb61cd6daf25.json.gz",
+      "equal": true,
+      "elapsed_seconds": 119.66380126797594,
+      "old_seconds": 634.025281653041
+    }
+  ],
+  "change": "SCAMP caches sorted local view keys; protocol messages, RNG choices, and metrics unchanged"
+}

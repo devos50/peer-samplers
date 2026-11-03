@@ -1,0 +1,16 @@
+{
+  "nodes": 100,
+  "rounds": 120,
+  "warmup": 20,
+  "view_size": 12,
+  "exchange_size": 6,
+  "active_size": 4,
+  "samples_per_node": 1,
+  "churn": 0.02,
+  "crash_fraction": 0.5,
+  "crash_round": 60,
+  "latency": 0.02,
+  "timeout": 0.4,
+  "sample_timeout": 2.0,
+  "observation_interval": 5
+}
