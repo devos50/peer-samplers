@@ -4,7 +4,7 @@ A dependency-free Python 3.11+ discrete-event simulator for comparing decentrali
 
 The repository includes the completed [990-run scale study](results/scale-study.html), its [summary CSV](results/scaled/summary.csv), and all raw checkpoints. Download or clone the repository and open the HTML report locally. See the [results inventory](results/README.md) for the original comparison, provenance, and earlier experiment batches.
 
-The [GitHub Pages reports](https://devos50.github.io/peer-samplers/) provide browser access once Pages is enabled. The `Publish experiment reports` workflow stages the original comparison, final scale-study reports, and their JSON/CSV downloads on every relevant push to `main`. Configure **Settings → Pages → Source → GitHub Actions** to enable deployment, then run the workflow if needed. To preview locally, run `python3 scripts/build_pages.py` and `python3 -m http.server --directory _site`; open `http://localhost:8000/`.
+The [GitHub Pages reports](https://devos50.github.io/peer-samplers/) provide browser access. The `Publish experiment reports` workflow stages the original comparison, final scale-study reports, and their JSON/CSV downloads on every relevant push to `main`. Pages uses **Settings → Pages → Source → GitHub Actions**. To preview locally, run `python3 scripts/build_pages.py` and `python3 -m http.server --directory _site`; open `http://localhost:8000/`.
 
 ```bash
 python3 -m peer_sim --list

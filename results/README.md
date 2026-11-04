@@ -1,6 +1,6 @@
 # Saved experiment results
 
-Start with [scale-study.html](scale-study.html), the cross-population report for the completed 990-run study. Clone or download the repository and open it in a browser; GitHub's file viewer shows the HTML source.
+Start with the [hosted interactive reports](https://devos50.github.io/peer-samplers/) or [scale-study.html](scale-study.html), the cross-population report for the completed 990-run study. For offline use, clone or download the repository and open the HTML in a browser; GitHub's file viewer shows the HTML source.
 
 | Path | Contents |
 |---|---|
