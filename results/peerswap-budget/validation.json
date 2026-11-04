@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-04",
+  "implementation_sha256": "9dc945425fb600645ed312ab26b11eea7d31b37a836ca872be891cc2f7cc7b6a",
+  "harness_sha256": "fac614061b95adcc594561cfd1f3032750d6fc1da954f1e83375458f0fb322b4",
+  "analysis_sha256": "50513fec7a505d93297b6783e97cacddacc15c0e39c47d8e97b171950b40d154",
+  "test_command": "python3 -m unittest discover -s tests -q",
+  "tests_passed": 58,
+  "tuning_runs": 720,
+  "evaluation_runs": 600,
+  "evaluation_requests": 107500000,
+  "summary_groups": 60,
+  "paired_comparisons": 1680,
+  "evaluation_budget_violations": 0,
+  "independent_raw_data_audit": [
+    "frozen configuration and source identities",
+    "shared initial graph/membership/bootstrap traces",
+    "global and cohort outcome conservation",
+    "traffic-channel and message-kind conservation",
+    "summary means and Student t intervals",
+    "paired differences and sign counts",
+    "120 repeated configurations across budget labels have identical core results"
+  ],
+  "report_validation": {
+    "runtime": "V8 with DOM harness",
+    "control_combinations": 156,
+    "real_browser_visual_test": false
+  }
+}

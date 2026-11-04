@@ -27,19 +27,23 @@ class Config:
     header_bytes: int = 32
     observation_interval: int = 5
     bootstrap_size: int = 1
+    maintenance_interval: int = 1
     peerswap_rate: float = 0.5
+    peerswap_reserve: int = 8
+    peerswap_repair_attempts: int = 1
     basalt_refresh: int = 0
     address_groups: int = 8
 
     def __post_init__(self):
         positive = ("nodes", "rounds", "view_size", "exchange_size", "active_size",
                     "walk_length", "lease_rounds", "observation_interval", "bootstrap_size",
-                    "address_groups")
+                    "address_groups", "maintenance_interval", "peerswap_repair_attempts")
         for name in positive:
             value = getattr(self, name)
             if not isinstance(value, int) or isinstance(value, bool) or value < 1:
                 raise ValueError(f"{name} must be a positive integer")
-        for name in ("samples_per_node", "scamp_c", "header_bytes", "basalt_refresh"):
+        for name in ("samples_per_node", "scamp_c", "header_bytes", "basalt_refresh",
+                     "peerswap_reserve"):
             value = getattr(self, name)
             if not isinstance(value, int) or isinstance(value, bool) or value < 0:
                 raise ValueError(f"{name} must be a nonnegative integer")

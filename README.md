@@ -1,8 +1,10 @@
 # Peer sampling simulator
 
-A dependency-free Python 3.11+ discrete-event simulator for comparing decentralized peer sampling. Eleven implementations share one transport, churn trace, sampling workload, metric evaluator, and export pipeline.
+A dependency-free Python 3.11+ discrete-event simulator for comparing decentralized peer sampling. Twelve implementations share one transport, churn trace, sampling workload, metric evaluator, and export pipeline. The original published study compares eleven variants; `peerswap_repair` adds an experimental churn-repair extension.
 
 The repository includes the completed [990-run scale study](results/scale-study.html), its [summary CSV](results/scaled/summary.csv), and all raw checkpoints. Download or clone the repository and open the HTML report locally. See the [results inventory](results/README.md) for the original comparison, provenance, and earlier experiment batches.
+
+The [PeerSwap repair study](results/peerswap-budget/report.html) tunes five methods under common traffic and retained-descriptor ceilings, then evaluates frozen settings on separate seeds. Its [methodology](docs/peerswap-budget-study.md) documents the protocol, selection rule, budget scope, and reproduction commands.
 
 The [GitHub Pages reports](https://devos50.github.io/peer-samplers/) provide browser access. The `Publish experiment reports` workflow stages the original comparison, final scale-study reports, and their JSON/CSV downloads on every relevant push to `main`. Pages uses **Settings → Pages → Source → GitHub Actions**. To preview locally, run `python3 scripts/build_pages.py` and `python3 -m http.server --directory _site`; open `http://localhost:8000/`.
 
@@ -28,6 +30,7 @@ Open `results/comparison/report.html` directly in a browser. It contains scenari
 | `basalt` | Greedy independently seeded ranking slots, hit-counter peer selection, push/pull, round-robin sample consumption and refresh, hierarchical IP ranking | [BASALT, 2021](https://arxiv.org/pdf/2102.04063), Algorithm 1/§3.3. Synthetic address hierarchy and request-driven sample consumption; timeout removal is a churn extension. |
 | `basalt_uniform` | Same BASALT machinery using uniform identity rankings | Same source, uniform-ranking variant. Useful when comparing all algorithms against the same target distribution. |
 | `peerswap` | Per-edge exponential clocks, whole-neighborhood position swaps, participant locks, prepare/commit/ack messages, lease-based abort | [PeerSwap, 2024](https://arxiv.org/html/2408.03829v2), §§III/VI. Preserves graph structure in reliable, failure-free runs. Attach-on-join and timeout cleanup are experimental extensions. Partial commits under crashes/loss can damage the overlay; this simulator does not claim Byzantine or atomic-commit fault tolerance. |
+| `peerswap_repair` | Original swaps plus a bounded reserve, reciprocal-neighbor checks, and bounded replacement-edge admission | Experimental extension implemented here. Repairs use only advertised contacts, count every message, and respect active swap locks. Isolated newcomers may displace one edge at a full introducer. Repairs change topology and do not inherit the fixed-population uniformity theorem. See [the matched-budget study](docs/peerswap-budget-study.md). |
 
 These are distinct algorithm implementations with documented simulation choices, not wrappers around a common shuffling algorithm. They are intended for controlled experimentation, not a claim to reproduce every paper's published measurements. The tests validate core behaviors and invariants; they do not establish the papers' mathematical guarantees. No Byzantine attackers are included in the current workloads.
 
@@ -126,6 +129,8 @@ python3 -m unittest discover -s tests -v
 ```
 
 Tests include deterministic replay of every algorithm, request-outcome conservation across asynchronous windows, shared churn traces, traffic-channel conservation, payload copying and lost-send accounting, changing-population target calculations, local versus global bias, cache bounds, age/freshness rules, history duplicate invariance, BASALT counters, HyParView symmetry, PeerSwap degree/triangle/symmetry preservation, degree-bias correction, MRWB recovery, plugin extension, and the CLI/export path.
+
+Repair tests additionally cover exact failure-free replay against the original PeerSwap, lost admission replies, interrupted swap commits, reciprocal repair, and descriptor bounds after every protocol event. Resource measurements report peak retained descriptors after each callback and time-weighted means; they exclude transient RPC/control buffers and host process memory. `maintenance_interval` spaces periodic maintenance with a deterministic per-node stagger; PeerSwap's independent exponential clocks remain controlled by `peerswap_rate`.
 
 ## Larger, resumable experiments
 

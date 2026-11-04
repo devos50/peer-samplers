@@ -45,6 +45,12 @@ def main():
             files.add((folder / name).relative_to(root))
     for name in ("summary.csv", "paired_comparisons.csv", "run_metrics.csv", "analysis.json"):
         files.add(Path("results/scaled") / name)
+    budget = root / "results/peerswap-budget"
+    if (budget / "report.html").exists():
+        for name in ("report.html", "summary.csv", "paired-comparisons.csv", "run-metrics.csv",
+                     "tuning-scores.csv", "selected-configurations.csv", "selection.json",
+                     "plan.json", "analysis.json"):
+            files.add(Path("results/peerswap-budget") / name)
     for relative in sorted(files):
         destination = output / relative
         destination.parent.mkdir(parents=True, exist_ok=True)

@@ -4,6 +4,7 @@ Start with the [hosted interactive reports](https://devos50.github.io/peer-sampl
 
 | Path | Contents |
 |---|---|
+| `peerswap-budget/` | Minimal PeerSwap repair versus four tuned baselines under common traffic/retained-descriptor ceilings: 720 tuning runs and 600 held-out runs. Includes [findings](peerswap-budget/README.md), [interactive report](peerswap-budget/report.html), frozen selections, and all raw checkpoints. |
 | `scaled/` | Final study: 80, 250, and 1,000 peers; 400 rounds; ten seeds; eleven algorithm variants; static, churn, and crash scenarios. All 990 runs completed, with 125,818,000 measured requests accounted for. |
 | `scaled/summary.csv` | Aggregate scores and Student t 95% intervals across seeds. |
 | `scaled/paired_comparisons.csv` | Matched-seed comparisons, confidence intervals, and win/tie counts. Intervals have no multiple-comparison correction. |

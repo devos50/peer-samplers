@@ -9,7 +9,8 @@ from .workload import make_workload
 
 
 PROTOCOL_FIELDS = {"view_size", "exchange_size", "active_size", "walk_length",
-                   "lease_rounds", "scamp_c", "peerswap_rate", "basalt_refresh"}
+                   "lease_rounds", "scamp_c", "peerswap_rate", "basalt_refresh",
+                   "maintenance_interval", "peerswap_reserve", "peerswap_repair_attempts"}
 
 
 def recovery_rounds(run):

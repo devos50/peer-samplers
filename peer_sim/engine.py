@@ -52,6 +52,8 @@ class Simulation:
         self.traffic = Counter()
         self.measured_traffic = Counter()
         self.by_kind = Counter()
+        self.measured_kind_messages = Counter()
+        self.measured_kind_bytes = Counter()
         self.epoch = 0
         self.live_snapshot = frozenset()
         self.samples = Samples(config.seed + 87123)
@@ -62,6 +64,17 @@ class Simulation:
         self._windows = []
         self.exposure = 0.0
         self._last_exposure_time = float(config.warmup)
+        # Observer bookkeeping never enters protocol state or consumes randomness.
+        # Keep one scalar pair per live node; only remeasure the touched protocol.
+        self._resource_values = {}
+        self._resource_totals = [0, 0]
+        self._resource_area = [0.0, 0.0]
+        self._resource_measured_area = [0.0, 0.0]
+        self._resource_peak = [0, 0]
+        self._resource_measured_peak = [0, 0]
+        self._resource_last_time = 0.0
+        self._resource_all_exposure = 0.0
+        self._resource_measurement_started = False
         self._started = False
 
     def schedule(self, at, event, data):
@@ -84,6 +97,11 @@ class Simulation:
         self._count(f"{channel}_messages")
         self._count(f"{channel}_bytes", size)
         self.by_kind[kind] += 1
+        # Count attempted sends before loss/liveness handling. The synthetic
+        # bootstrap descriptor delivery in _add remains in bootstrap_* totals.
+        if self.now >= self.config.warmup:
+            self.measured_kind_messages[kind] += 1
+            self.measured_kind_bytes[kind] += size
         if self.network_rng.random() < self.config.loss:
             self._count("messages_lost")
             return
@@ -126,6 +144,72 @@ class Simulation:
         self._count("messages_delivered")
         self._count("bytes_delivered", size)
         protocol.bootstrap(list(peers), initial)
+        self._record_resources(node)
+
+    def _resource_expose_until(self, at):
+        """Integrate retained state between callbacks, clipped to the run horizon."""
+        stop = min(at, self.config.rounds)
+        start = self._resource_last_time
+        if stop <= start:
+            return
+        elapsed = stop - start
+        measured_elapsed = max(0.0, stop - max(start, self.config.warmup))
+        for index, total in enumerate(self._resource_totals):
+            self._resource_area[index] += total * elapsed
+            self._resource_measured_area[index] += total * measured_elapsed
+        self._resource_all_exposure += len(self._resource_values) * elapsed
+        self._resource_last_time = stop
+
+    def _begin_resource_measurement(self):
+        # Include state carried across warmup even if a protocol never ticks again.
+        # Read cached counts once at the boundary, not protocol state each event.
+        if not self._resource_measurement_started and self.now >= self.config.warmup:
+            self._resource_measurement_started = True
+            for retained, routing in self._resource_values.values():
+                self._resource_measured_peak[0] = max(self._resource_measured_peak[0], retained)
+                self._resource_measured_peak[1] = max(self._resource_measured_peak[1], routing)
+
+    def _record_resources(self, node):
+        self._resource_expose_until(self.now)
+        self._begin_resource_measurement()
+        protocol = self.protocols[node]
+        values = (protocol.state_size(), len(protocol.neighbors()))
+        previous = self._resource_values.get(node, (0, 0))
+        for index, value in enumerate(values):
+            self._resource_totals[index] += value - previous[index]
+            self._resource_peak[index] = max(self._resource_peak[index], value)
+            if self.now >= self.config.warmup:
+                self._resource_measured_peak[index] = max(self._resource_measured_peak[index], value)
+        self._resource_values[node] = values
+
+    def _remove_resources(self, node):
+        self._resource_expose_until(self.now)
+        self._begin_resource_measurement()
+        previous = self._resource_values.pop(node, (0, 0))
+        for index, value in enumerate(previous):
+            self._resource_totals[index] -= value
+
+    def _resource_report(self):
+        self._resource_expose_until(self.config.rounds)
+        return {
+            "unit": "peer descriptors per node",
+            "scope": "Retained protocol state reported by state_size(); includes routing, "
+                     "history, reserve and passive descriptors, including duplicate slots. "
+                     "Excludes transient message/RPC/control buffers and simulator memory. "
+                     "Peaks are checked after every bootstrap, tick, message, timer and sample "
+                     "callback, including the drain; temporary values within a callback are excluded.",
+            "peak_retained_descriptors": self._resource_peak[0],
+            "peak_routing_descriptors": self._resource_peak[1],
+            "measured_peak_retained_descriptors": self._resource_measured_peak[0],
+            "measured_peak_routing_descriptors": self._resource_measured_peak[1],
+            "mean_retained_descriptors": self._resource_measured_area[0] / self.exposure if self.exposure else None,
+            "mean_routing_descriptors": self._resource_measured_area[1] / self.exposure if self.exposure else None,
+            "all_time_mean_retained_descriptors": self._resource_area[0] / self._resource_all_exposure if self._resource_all_exposure else None,
+            "all_time_mean_routing_descriptors": self._resource_area[1] / self._resource_all_exposure if self._resource_all_exposure else None,
+            "mean_interval": [self.config.warmup, self.config.rounds],
+            "all_time_mean_interval": [0, self.config.rounds],
+            "all_time_live_node_rounds": self._resource_all_exposure,
+        }
 
     def _membership_epoch(self):
         self.epoch += 1
@@ -170,12 +254,14 @@ class Simulation:
             if at > end:
                 break
             self.now = at
+            self._begin_resource_measurement()
             if event == "round":
                 round_, change = data
                 self._expose_until(at)
                 if change:
                     self.live.difference_update(change.leaving)
                     for departed in change.leaving:
+                        self._remove_resources(departed)
                         self.protocols.pop(departed, None)
                     for node, seeds in change.joining:
                         self._add(node, seeds)
@@ -187,19 +273,23 @@ class Simulation:
                 order = sorted(self.live)
                 random.Random(f"tick:{self.config.seed}:{round_}").shuffle(order)
                 for node in order:
-                    self.protocols[node].tick()
+                    if (round_ + node) % self.config.maintenance_interval == 0:
+                        self.protocols[node].tick()
+                        self._record_resources(node)
             elif event == "message":
                 source, target, kind, body, size = data
                 if target in self.live:
                     self._count("messages_delivered")
                     self._count("bytes_delivered", size)
                     self.protocols[target].on_message(source, kind, body)
+                    self._record_resources(target)
                 else:
                     self._count("messages_to_dead")
             elif event == "timer":
                 node, kind, payload = data
                 if node in self.live and at < self.config.rounds:
                     self.protocols[node].on_timer(kind, payload)
+                    self._record_resources(node)
             elif event == "sample":
                 for source in sorted(self.live):
                     for _ in range(self.config.samples_per_node):
@@ -211,6 +301,7 @@ class Simulation:
                             self.window.requests += 1
                         self.schedule(self.now + self.config.sample_timeout, "deadline", token)
                         self.protocols[source].request_sample(token)
+                        self._record_resources(source)
             elif event == "deadline":
                 self._timeout(data)
             elif event == "observe":
@@ -232,7 +323,13 @@ class Simulation:
             "samples": self.samples.report(self.target, self.config.address_groups),
             "traffic": dict(self.traffic), "measured_traffic": dict(self.measured_traffic),
             "messages_by_kind": dict(sorted(self.by_kind.items())),
+            "measured_traffic_by_kind": {
+                kind: {"messages": self.measured_kind_messages[kind],
+                       "bytes": self.measured_kind_bytes[kind]}
+                for kind in sorted(self.measured_kind_messages)
+            },
             "live_node_rounds": self.exposure,
+            "resource_usage": self._resource_report(),
             "bytes_per_live_node_round": self.measured_traffic["bytes_sent"] / self.exposure if self.exposure else None,
             "messages_per_live_node_round": self.measured_traffic["messages_sent"] / self.exposure if self.exposure else None,
             "bytes_per_live_sample": self.measured_traffic["bytes_sent"] / self.samples.outcomes["live"] if self.samples.outcomes["live"] else None,

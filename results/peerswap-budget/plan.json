@@ -1,0 +1,864 @@
+{
+  "schema_version": 1,
+  "algorithms": [
+    "cyclon",
+    "newscast",
+    "hyparview",
+    "peerswap",
+    "peerswap_repair"
+  ],
+  "budgets": [
+    {
+      "name": "small",
+      "descriptors": 16,
+      "bytes": 512
+    },
+    {
+      "name": "large",
+      "descriptors": 32,
+      "bytes": 2048
+    }
+  ],
+  "candidates": [
+    {
+      "algorithm": "cyclon",
+      "candidate": "cyclon-00",
+      "parameters": {
+        "view_size": 4,
+        "exchange_size": 2,
+        "maintenance_interval": 1
+      }
+    },
+    {
+      "algorithm": "cyclon",
+      "candidate": "cyclon-01",
+      "parameters": {
+        "view_size": 4,
+        "exchange_size": 2,
+        "maintenance_interval": 2
+      }
+    },
+    {
+      "algorithm": "cyclon",
+      "candidate": "cyclon-02",
+      "parameters": {
+        "view_size": 4,
+        "exchange_size": 4,
+        "maintenance_interval": 1
+      }
+    },
+    {
+      "algorithm": "cyclon",
+      "candidate": "cyclon-03",
+      "parameters": {
+        "view_size": 4,
+        "exchange_size": 4,
+        "maintenance_interval": 2
+      }
+    },
+    {
+      "algorithm": "cyclon",
+      "candidate": "cyclon-04",
+      "parameters": {
+        "view_size": 8,
+        "exchange_size": 2,
+        "maintenance_interval": 1
+      }
+    },
+    {
+      "algorithm": "cyclon",
+      "candidate": "cyclon-05",
+      "parameters": {
+        "view_size": 8,
+        "exchange_size": 2,
+        "maintenance_interval": 2
+      }
+    },
+    {
+      "algorithm": "cyclon",
+      "candidate": "cyclon-06",
+      "parameters": {
+        "view_size": 8,
+        "exchange_size": 8,
+        "maintenance_interval": 1
+      }
+    },
+    {
+      "algorithm": "cyclon",
+      "candidate": "cyclon-07",
+      "parameters": {
+        "view_size": 8,
+        "exchange_size": 8,
+        "maintenance_interval": 2
+      }
+    },
+    {
+      "algorithm": "cyclon",
+      "candidate": "cyclon-08",
+      "parameters": {
+        "view_size": 16,
+        "exchange_size": 2,
+        "maintenance_interval": 1
+      }
+    },
+    {
+      "algorithm": "cyclon",
+      "candidate": "cyclon-09",
+      "parameters": {
+        "view_size": 16,
+        "exchange_size": 2,
+        "maintenance_interval": 2
+      }
+    },
+    {
+      "algorithm": "cyclon",
+      "candidate": "cyclon-10",
+      "parameters": {
+        "view_size": 16,
+        "exchange_size": 16,
+        "maintenance_interval": 1
+      }
+    },
+    {
+      "algorithm": "cyclon",
+      "candidate": "cyclon-11",
+      "parameters": {
+        "view_size": 16,
+        "exchange_size": 16,
+        "maintenance_interval": 2
+      }
+    },
+    {
+      "algorithm": "cyclon",
+      "candidate": "cyclon-12",
+      "parameters": {
+        "view_size": 32,
+        "exchange_size": 2,
+        "maintenance_interval": 1
+      }
+    },
+    {
+      "algorithm": "cyclon",
+      "candidate": "cyclon-13",
+      "parameters": {
+        "view_size": 32,
+        "exchange_size": 2,
+        "maintenance_interval": 2
+      }
+    },
+    {
+      "algorithm": "cyclon",
+      "candidate": "cyclon-14",
+      "parameters": {
+        "view_size": 32,
+        "exchange_size": 32,
+        "maintenance_interval": 1
+      }
+    },
+    {
+      "algorithm": "cyclon",
+      "candidate": "cyclon-15",
+      "parameters": {
+        "view_size": 32,
+        "exchange_size": 32,
+        "maintenance_interval": 2
+      }
+    },
+    {
+      "algorithm": "newscast",
+      "candidate": "newscast-00",
+      "parameters": {
+        "view_size": 4,
+        "exchange_size": 4,
+        "maintenance_interval": 1
+      }
+    },
+    {
+      "algorithm": "newscast",
+      "candidate": "newscast-01",
+      "parameters": {
+        "view_size": 4,
+        "exchange_size": 4,
+        "maintenance_interval": 2
+      }
+    },
+    {
+      "algorithm": "newscast",
+      "candidate": "newscast-02",
+      "parameters": {
+        "view_size": 4,
+        "exchange_size": 4,
+        "maintenance_interval": 4
+      }
+    },
+    {
+      "algorithm": "newscast",
+      "candidate": "newscast-03",
+      "parameters": {
+        "view_size": 4,
+        "exchange_size": 4,
+        "maintenance_interval": 8
+      }
+    },
+    {
+      "algorithm": "newscast",
+      "candidate": "newscast-04",
+      "parameters": {
+        "view_size": 8,
+        "exchange_size": 4,
+        "maintenance_interval": 1
+      }
+    },
+    {
+      "algorithm": "newscast",
+      "candidate": "newscast-05",
+      "parameters": {
+        "view_size": 8,
+        "exchange_size": 4,
+        "maintenance_interval": 2
+      }
+    },
+    {
+      "algorithm": "newscast",
+      "candidate": "newscast-06",
+      "parameters": {
+        "view_size": 8,
+        "exchange_size": 4,
+        "maintenance_interval": 4
+      }
+    },
+    {
+      "algorithm": "newscast",
+      "candidate": "newscast-07",
+      "parameters": {
+        "view_size": 8,
+        "exchange_size": 4,
+        "maintenance_interval": 8
+      }
+    },
+    {
+      "algorithm": "newscast",
+      "candidate": "newscast-08",
+      "parameters": {
+        "view_size": 16,
+        "exchange_size": 4,
+        "maintenance_interval": 1
+      }
+    },
+    {
+      "algorithm": "newscast",
+      "candidate": "newscast-09",
+      "parameters": {
+        "view_size": 16,
+        "exchange_size": 4,
+        "maintenance_interval": 2
+      }
+    },
+    {
+      "algorithm": "newscast",
+      "candidate": "newscast-10",
+      "parameters": {
+        "view_size": 16,
+        "exchange_size": 4,
+        "maintenance_interval": 4
+      }
+    },
+    {
+      "algorithm": "newscast",
+      "candidate": "newscast-11",
+      "parameters": {
+        "view_size": 16,
+        "exchange_size": 4,
+        "maintenance_interval": 8
+      }
+    },
+    {
+      "algorithm": "newscast",
+      "candidate": "newscast-12",
+      "parameters": {
+        "view_size": 32,
+        "exchange_size": 4,
+        "maintenance_interval": 1
+      }
+    },
+    {
+      "algorithm": "newscast",
+      "candidate": "newscast-13",
+      "parameters": {
+        "view_size": 32,
+        "exchange_size": 4,
+        "maintenance_interval": 2
+      }
+    },
+    {
+      "algorithm": "newscast",
+      "candidate": "newscast-14",
+      "parameters": {
+        "view_size": 32,
+        "exchange_size": 4,
+        "maintenance_interval": 4
+      }
+    },
+    {
+      "algorithm": "newscast",
+      "candidate": "newscast-15",
+      "parameters": {
+        "view_size": 32,
+        "exchange_size": 4,
+        "maintenance_interval": 8
+      }
+    },
+    {
+      "algorithm": "hyparview",
+      "candidate": "hyparview-00",
+      "parameters": {
+        "active_size": 2,
+        "view_size": 6,
+        "exchange_size": 2,
+        "maintenance_interval": 1
+      }
+    },
+    {
+      "algorithm": "hyparview",
+      "candidate": "hyparview-01",
+      "parameters": {
+        "active_size": 2,
+        "view_size": 6,
+        "exchange_size": 2,
+        "maintenance_interval": 2
+      }
+    },
+    {
+      "algorithm": "hyparview",
+      "candidate": "hyparview-02",
+      "parameters": {
+        "active_size": 2,
+        "view_size": 6,
+        "exchange_size": 6,
+        "maintenance_interval": 1
+      }
+    },
+    {
+      "algorithm": "hyparview",
+      "candidate": "hyparview-03",
+      "parameters": {
+        "active_size": 2,
+        "view_size": 6,
+        "exchange_size": 6,
+        "maintenance_interval": 2
+      }
+    },
+    {
+      "algorithm": "hyparview",
+      "candidate": "hyparview-04",
+      "parameters": {
+        "active_size": 4,
+        "view_size": 12,
+        "exchange_size": 2,
+        "maintenance_interval": 1
+      }
+    },
+    {
+      "algorithm": "hyparview",
+      "candidate": "hyparview-05",
+      "parameters": {
+        "active_size": 4,
+        "view_size": 12,
+        "exchange_size": 2,
+        "maintenance_interval": 2
+      }
+    },
+    {
+      "algorithm": "hyparview",
+      "candidate": "hyparview-06",
+      "parameters": {
+        "active_size": 4,
+        "view_size": 12,
+        "exchange_size": 6,
+        "maintenance_interval": 1
+      }
+    },
+    {
+      "algorithm": "hyparview",
+      "candidate": "hyparview-07",
+      "parameters": {
+        "active_size": 4,
+        "view_size": 12,
+        "exchange_size": 6,
+        "maintenance_interval": 2
+      }
+    },
+    {
+      "algorithm": "hyparview",
+      "candidate": "hyparview-08",
+      "parameters": {
+        "active_size": 4,
+        "view_size": 28,
+        "exchange_size": 2,
+        "maintenance_interval": 1
+      }
+    },
+    {
+      "algorithm": "hyparview",
+      "candidate": "hyparview-09",
+      "parameters": {
+        "active_size": 4,
+        "view_size": 28,
+        "exchange_size": 2,
+        "maintenance_interval": 2
+      }
+    },
+    {
+      "algorithm": "hyparview",
+      "candidate": "hyparview-10",
+      "parameters": {
+        "active_size": 4,
+        "view_size": 28,
+        "exchange_size": 6,
+        "maintenance_interval": 1
+      }
+    },
+    {
+      "algorithm": "hyparview",
+      "candidate": "hyparview-11",
+      "parameters": {
+        "active_size": 4,
+        "view_size": 28,
+        "exchange_size": 6,
+        "maintenance_interval": 2
+      }
+    },
+    {
+      "algorithm": "hyparview",
+      "candidate": "hyparview-12",
+      "parameters": {
+        "active_size": 8,
+        "view_size": 24,
+        "exchange_size": 2,
+        "maintenance_interval": 1
+      }
+    },
+    {
+      "algorithm": "hyparview",
+      "candidate": "hyparview-13",
+      "parameters": {
+        "active_size": 8,
+        "view_size": 24,
+        "exchange_size": 2,
+        "maintenance_interval": 2
+      }
+    },
+    {
+      "algorithm": "hyparview",
+      "candidate": "hyparview-14",
+      "parameters": {
+        "active_size": 8,
+        "view_size": 24,
+        "exchange_size": 6,
+        "maintenance_interval": 1
+      }
+    },
+    {
+      "algorithm": "hyparview",
+      "candidate": "hyparview-15",
+      "parameters": {
+        "active_size": 8,
+        "view_size": 24,
+        "exchange_size": 6,
+        "maintenance_interval": 2
+      }
+    },
+    {
+      "algorithm": "peerswap",
+      "candidate": "peerswap-00",
+      "parameters": {
+        "view_size": 4,
+        "exchange_size": 4,
+        "peerswap_rate": 0.005,
+        "maintenance_interval": 1
+      }
+    },
+    {
+      "algorithm": "peerswap",
+      "candidate": "peerswap-01",
+      "parameters": {
+        "view_size": 4,
+        "exchange_size": 4,
+        "peerswap_rate": 0.005,
+        "maintenance_interval": 2
+      }
+    },
+    {
+      "algorithm": "peerswap",
+      "candidate": "peerswap-02",
+      "parameters": {
+        "view_size": 4,
+        "exchange_size": 4,
+        "peerswap_rate": 0.005,
+        "maintenance_interval": 4
+      }
+    },
+    {
+      "algorithm": "peerswap",
+      "candidate": "peerswap-03",
+      "parameters": {
+        "view_size": 4,
+        "exchange_size": 4,
+        "peerswap_rate": 0.005,
+        "maintenance_interval": 8
+      }
+    },
+    {
+      "algorithm": "peerswap",
+      "candidate": "peerswap-04",
+      "parameters": {
+        "view_size": 4,
+        "exchange_size": 4,
+        "peerswap_rate": 0.02,
+        "maintenance_interval": 1
+      }
+    },
+    {
+      "algorithm": "peerswap",
+      "candidate": "peerswap-05",
+      "parameters": {
+        "view_size": 4,
+        "exchange_size": 4,
+        "peerswap_rate": 0.02,
+        "maintenance_interval": 2
+      }
+    },
+    {
+      "algorithm": "peerswap",
+      "candidate": "peerswap-06",
+      "parameters": {
+        "view_size": 4,
+        "exchange_size": 4,
+        "peerswap_rate": 0.02,
+        "maintenance_interval": 4
+      }
+    },
+    {
+      "algorithm": "peerswap",
+      "candidate": "peerswap-07",
+      "parameters": {
+        "view_size": 4,
+        "exchange_size": 4,
+        "peerswap_rate": 0.02,
+        "maintenance_interval": 8
+      }
+    },
+    {
+      "algorithm": "peerswap",
+      "candidate": "peerswap-08",
+      "parameters": {
+        "view_size": 4,
+        "exchange_size": 4,
+        "peerswap_rate": 0.08,
+        "maintenance_interval": 1
+      }
+    },
+    {
+      "algorithm": "peerswap",
+      "candidate": "peerswap-09",
+      "parameters": {
+        "view_size": 4,
+        "exchange_size": 4,
+        "peerswap_rate": 0.08,
+        "maintenance_interval": 2
+      }
+    },
+    {
+      "algorithm": "peerswap",
+      "candidate": "peerswap-10",
+      "parameters": {
+        "view_size": 4,
+        "exchange_size": 4,
+        "peerswap_rate": 0.08,
+        "maintenance_interval": 4
+      }
+    },
+    {
+      "algorithm": "peerswap",
+      "candidate": "peerswap-11",
+      "parameters": {
+        "view_size": 4,
+        "exchange_size": 4,
+        "peerswap_rate": 0.08,
+        "maintenance_interval": 8
+      }
+    },
+    {
+      "algorithm": "peerswap",
+      "candidate": "peerswap-12",
+      "parameters": {
+        "view_size": 4,
+        "exchange_size": 4,
+        "peerswap_rate": 0.32,
+        "maintenance_interval": 1
+      }
+    },
+    {
+      "algorithm": "peerswap",
+      "candidate": "peerswap-13",
+      "parameters": {
+        "view_size": 4,
+        "exchange_size": 4,
+        "peerswap_rate": 0.32,
+        "maintenance_interval": 2
+      }
+    },
+    {
+      "algorithm": "peerswap",
+      "candidate": "peerswap-14",
+      "parameters": {
+        "view_size": 4,
+        "exchange_size": 4,
+        "peerswap_rate": 0.32,
+        "maintenance_interval": 4
+      }
+    },
+    {
+      "algorithm": "peerswap",
+      "candidate": "peerswap-15",
+      "parameters": {
+        "view_size": 4,
+        "exchange_size": 4,
+        "peerswap_rate": 0.32,
+        "maintenance_interval": 8
+      }
+    },
+    {
+      "algorithm": "peerswap_repair",
+      "candidate": "peerswap_repair-00",
+      "parameters": {
+        "view_size": 4,
+        "exchange_size": 4,
+        "peerswap_reserve": 4,
+        "peerswap_rate": 0.01,
+        "maintenance_interval": 1,
+        "peerswap_repair_attempts": 1
+      }
+    },
+    {
+      "algorithm": "peerswap_repair",
+      "candidate": "peerswap_repair-01",
+      "parameters": {
+        "view_size": 4,
+        "exchange_size": 4,
+        "peerswap_reserve": 4,
+        "peerswap_rate": 0.01,
+        "maintenance_interval": 2,
+        "peerswap_repair_attempts": 1
+      }
+    },
+    {
+      "algorithm": "peerswap_repair",
+      "candidate": "peerswap_repair-02",
+      "parameters": {
+        "view_size": 4,
+        "exchange_size": 4,
+        "peerswap_reserve": 4,
+        "peerswap_rate": 0.05,
+        "maintenance_interval": 1,
+        "peerswap_repair_attempts": 1
+      }
+    },
+    {
+      "algorithm": "peerswap_repair",
+      "candidate": "peerswap_repair-03",
+      "parameters": {
+        "view_size": 4,
+        "exchange_size": 4,
+        "peerswap_reserve": 4,
+        "peerswap_rate": 0.05,
+        "maintenance_interval": 2,
+        "peerswap_repair_attempts": 1
+      }
+    },
+    {
+      "algorithm": "peerswap_repair",
+      "candidate": "peerswap_repair-04",
+      "parameters": {
+        "view_size": 4,
+        "exchange_size": 4,
+        "peerswap_reserve": 12,
+        "peerswap_rate": 0.01,
+        "maintenance_interval": 1,
+        "peerswap_repair_attempts": 1
+      }
+    },
+    {
+      "algorithm": "peerswap_repair",
+      "candidate": "peerswap_repair-05",
+      "parameters": {
+        "view_size": 4,
+        "exchange_size": 4,
+        "peerswap_reserve": 12,
+        "peerswap_rate": 0.01,
+        "maintenance_interval": 2,
+        "peerswap_repair_attempts": 1
+      }
+    },
+    {
+      "algorithm": "peerswap_repair",
+      "candidate": "peerswap_repair-06",
+      "parameters": {
+        "view_size": 4,
+        "exchange_size": 4,
+        "peerswap_reserve": 12,
+        "peerswap_rate": 0.05,
+        "maintenance_interval": 1,
+        "peerswap_repair_attempts": 1
+      }
+    },
+    {
+      "algorithm": "peerswap_repair",
+      "candidate": "peerswap_repair-07",
+      "parameters": {
+        "view_size": 4,
+        "exchange_size": 4,
+        "peerswap_reserve": 12,
+        "peerswap_rate": 0.05,
+        "maintenance_interval": 2,
+        "peerswap_repair_attempts": 1
+      }
+    },
+    {
+      "algorithm": "peerswap_repair",
+      "candidate": "peerswap_repair-08",
+      "parameters": {
+        "view_size": 8,
+        "exchange_size": 4,
+        "peerswap_reserve": 8,
+        "peerswap_rate": 0.01,
+        "maintenance_interval": 1,
+        "peerswap_repair_attempts": 1
+      }
+    },
+    {
+      "algorithm": "peerswap_repair",
+      "candidate": "peerswap_repair-09",
+      "parameters": {
+        "view_size": 8,
+        "exchange_size": 4,
+        "peerswap_reserve": 8,
+        "peerswap_rate": 0.01,
+        "maintenance_interval": 2,
+        "peerswap_repair_attempts": 1
+      }
+    },
+    {
+      "algorithm": "peerswap_repair",
+      "candidate": "peerswap_repair-10",
+      "parameters": {
+        "view_size": 8,
+        "exchange_size": 4,
+        "peerswap_reserve": 8,
+        "peerswap_rate": 0.05,
+        "maintenance_interval": 1,
+        "peerswap_repair_attempts": 1
+      }
+    },
+    {
+      "algorithm": "peerswap_repair",
+      "candidate": "peerswap_repair-11",
+      "parameters": {
+        "view_size": 8,
+        "exchange_size": 4,
+        "peerswap_reserve": 8,
+        "peerswap_rate": 0.05,
+        "maintenance_interval": 2,
+        "peerswap_repair_attempts": 1
+      }
+    },
+    {
+      "algorithm": "peerswap_repair",
+      "candidate": "peerswap_repair-12",
+      "parameters": {
+        "view_size": 8,
+        "exchange_size": 4,
+        "peerswap_reserve": 24,
+        "peerswap_rate": 0.01,
+        "maintenance_interval": 1,
+        "peerswap_repair_attempts": 1
+      }
+    },
+    {
+      "algorithm": "peerswap_repair",
+      "candidate": "peerswap_repair-13",
+      "parameters": {
+        "view_size": 8,
+        "exchange_size": 4,
+        "peerswap_reserve": 24,
+        "peerswap_rate": 0.01,
+        "maintenance_interval": 2,
+        "peerswap_repair_attempts": 1
+      }
+    },
+    {
+      "algorithm": "peerswap_repair",
+      "candidate": "peerswap_repair-14",
+      "parameters": {
+        "view_size": 8,
+        "exchange_size": 4,
+        "peerswap_reserve": 24,
+        "peerswap_rate": 0.05,
+        "maintenance_interval": 1,
+        "peerswap_repair_attempts": 1
+      }
+    },
+    {
+      "algorithm": "peerswap_repair",
+      "candidate": "peerswap_repair-15",
+      "parameters": {
+        "view_size": 8,
+        "exchange_size": 4,
+        "peerswap_reserve": 24,
+        "peerswap_rate": 0.05,
+        "maintenance_interval": 2,
+        "peerswap_repair_attempts": 1
+      }
+    }
+  ],
+  "tuning_seeds": [
+    201,
+    202,
+    203
+  ],
+  "evaluation_seeds": [
+    301,
+    302,
+    303,
+    304,
+    305,
+    306,
+    307,
+    308,
+    309,
+    310
+  ],
+  "scenarios": [
+    "static",
+    "churn",
+    "crash"
+  ],
+  "tuning_nodes": 160,
+  "tuning_rounds": 160,
+  "evaluation_nodes": [
+    250,
+    1000
+  ],
+  "evaluation_rounds": 400,
+  "initial_degree_bound": 4,
+  "selection_score": "mean((1 - live_sample_rate) + live_sample_rate * global_tv)",
+  "selection_ties": [
+    "mean_bytes",
+    "candidate"
+  ],
+  "traffic_tuning_fraction": 0.85,
+  "feasibility": "Every tuning run: all-time peak retained descriptors <= M and measured bytes/live-node-round <= 0.85*B; held-out runs must satisfy M and B",
+  "memory_scope": "Retained membership descriptors; excludes transient RPC, transaction snapshots, control buffers, and runtime overhead",
+  "source_implementation_sha256": "9dc945425fb600645ed312ab26b11eea7d31b37a836ca872be891cc2f7cc7b6a",
+  "harness_sha256": "fac614061b95adcc594561cfd1f3032750d6fc1da954f1e83375458f0fb322b4"
+}

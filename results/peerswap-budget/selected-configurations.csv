@@ -1,0 +1,11 @@
+algorithm,candidate,parameters,score,mean_live,mean_bytes,max_bytes,peak_descriptors,budget,training_feasible,feasible_candidates
+cyclon,cyclon-00,"{""exchange_size"": 2, ""maintenance_interval"": 1, ""view_size"": 4}",0.06891032183556584,0.9828524502840909,185.3379488241793,188.207763671875,4,small,True,12
+newscast,newscast-04,"{""exchange_size"": 4, ""maintenance_interval"": 1, ""view_size"": 8}",0.08096071721608365,0.9802177043876262,351.78548966224747,356.17294921875,8,small,True,11
+hyparview,hyparview-03,"{""active_size"": 2, ""exchange_size"": 6, ""maintenance_interval"": 2, ""view_size"": 6}",0.03984286900097941,0.9955891927083333,376.581286004577,417.88154296875,8,small,True,2
+peerswap,peerswap-04,"{""exchange_size"": 4, ""maintenance_interval"": 1, ""peerswap_rate"": 0.02, ""view_size"": 4}",0.17439923778809127,0.9270310527146464,231.35323005445076,285.92734375,7,small,True,9
+peerswap_repair,peerswap_repair-04,"{""exchange_size"": 4, ""maintenance_interval"": 1, ""peerswap_rate"": 0.01, ""peerswap_repair_attempts"": 1, ""peerswap_reserve"": 12, ""view_size"": 4}",0.07007358894466181,0.981216461489899,274.35027077414776,327.879296875,16,small,True,10
+cyclon,cyclon-00,"{""exchange_size"": 2, ""maintenance_interval"": 1, ""view_size"": 4}",0.06891032183556584,0.9828524502840909,185.3379488241793,188.207763671875,4,large,True,16
+newscast,newscast-08,"{""exchange_size"": 4, ""maintenance_interval"": 1, ""view_size"": 16}",0.07727330930457067,0.9871192392676768,532.9422274502841,536.869775390625,16,large,True,16
+hyparview,hyparview-02,"{""active_size"": 2, ""exchange_size"": 6, ""maintenance_interval"": 1, ""view_size"": 6}",0.03609361921462126,0.9995580808080808,735.3291193181818,774.942626953125,8,large,True,14
+peerswap,peerswap-08,"{""exchange_size"": 4, ""maintenance_interval"": 1, ""peerswap_rate"": 0.08, ""view_size"": 4}",0.15247920957752642,0.9281728416982323,399.1880001183712,553.76669921875,7,large,True,16
+peerswap_repair,peerswap_repair-04,"{""exchange_size"": 4, ""maintenance_interval"": 1, ""peerswap_rate"": 0.01, ""peerswap_repair_attempts"": 1, ""peerswap_reserve"": 12, ""view_size"": 4}",0.07007358894466181,0.981216461489899,274.35027077414776,327.879296875,16,large,True,16

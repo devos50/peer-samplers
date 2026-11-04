@@ -21,6 +21,7 @@ sys.path.insert(0, str(ROOT))
 
 from peer_sim import Config, Simulation
 from peer_sim.experiment import recovery_rounds
+from peer_sim.workload import make_workload
 
 
 def implementation_digest():
@@ -38,7 +39,9 @@ def job_key(job):
 def run_job(job, output):
     key = job_key(job)
     started = time.perf_counter()
-    result = Simulation(job["algorithm"], Config(**job["config"])).run()
+    workload = (make_workload(Config(**job["workload_config"]))
+                if "workload_config" in job else None)
+    result = Simulation(job["algorithm"], Config(**job["config"]), workload).run()
     result["recovery_rounds"] = recovery_rounds(result)
     result["tier"] = job["tier"]
     cfg = result["config"]
@@ -77,6 +80,8 @@ def main(argv=None):
         parser.error("jobs must be nonempty and unique")
     for job in jobs:
         Config(**job["config"])
+        if "workload_config" in job:
+            Config(**job["workload_config"])
     output = args.output.resolve()
     (output / "runs").mkdir(parents=True, exist_ok=True)
     manifest = {"schema_version": 1, "implementation_sha256": implementation_digest(), "jobs": jobs}
