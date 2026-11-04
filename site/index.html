@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Peer sampling experiment reports</title>
+  <style>
+    :root { color-scheme: dark; font-family: system-ui, sans-serif; background: #101722; color: #e4ecf8; }
+    body { max-width: 960px; margin: 48px auto; padding: 0 24px; }
+    h1 { font-size: clamp(2rem, 5vw, 3rem); line-height: 1.15; }
+    p, li { line-height: 1.65; color: #bdcbe0; }
+    a { color: #8bc9ff; text-underline-offset: .2em; }
+    a:focus-visible { outline: 3px solid #e6b969; outline-offset: 5px; }
+    .button { display: inline-block; padding: 14px 20px; background: #8bc9ff; color: #101722; font-weight: 650; border-radius: 8px; text-decoration: none; }
+    .reports { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; margin: 24px 0; }
+    .card { padding: 20px; border: 1px solid #344359; border-radius: 10px; background: #162132; }
+    .card h3 { margin-top: 0; }
+    .note { border-left: 3px solid #e6b969; padding: 12px 18px; background: #1d283a; }
+    footer { border-top: 1px solid #344359; margin-top: 36px; padding-top: 16px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Peer sampling experiment reports</h1>
+    <p>Compare eleven decentralized peer sampling variants on uniformity, churn resilience, and communication overhead. Explore scenarios, switch metrics, and inspect uncertainty across seeds.</p>
+    <p><a class="button" href="results/scale-study.html">Explore the scale study →</a></p>
+    <p>990 completed runs · 80, 250, and 1,000 peers · 400 rounds · ten seeds · static, churn, and crash scenarios · 125.8 million measured requests.</p>
+
+    <h2>Detailed reports</h2>
+    <div class="reports">
+      <article class="card">
+        <h3><a href="results/scaled/80-peers-400-rounds-control/report.html">80 peers</a></h3>
+        <p>Long-run control: 400 rounds, ten seeds, and 330 runs.</p>
+      </article>
+      <article class="card">
+        <h3><a href="results/scaled/250-peers-400-rounds/report.html">250 peers</a></h3>
+        <p>400 rounds, ten seeds, and 330 runs.</p>
+      </article>
+      <article class="card">
+        <h3><a href="results/scaled/1000-peers-400-rounds/report.html">1,000 peers</a></h3>
+        <p>400 rounds, ten seeds, and 330 runs.</p>
+      </article>
+    </div>
+    <p><a href="results/comparison/report.html">Original comparison</a>: 80 peers, 80 rounds, three seeds, and 99 runs.</p>
+
+    <h2>Download the measurements</h2>
+    <ul>
+      <li><a href="results/scaled/summary.csv">Summary CSV</a> — seed means and Student t 95% confidence intervals.</li>
+      <li><a href="results/scaled/paired_comparisons.csv">Paired comparisons CSV</a> — matching seeds and membership traces.</li>
+      <li><a href="results/scaled/run_metrics.csv">Per-run metrics CSV</a> and <a href="results/scaled/analysis.json">analysis JSON</a>.</li>
+      <li>Each detailed report also links its full JSON results and time-series CSV.</li>
+    </ul>
+    <p class="note">These results compare the implemented variants at fixed settings. Local TV excess measures sample diversity over time relative to an IID reference. Hierarchical BASALT targets IP-prefix weighting; SCAMP's lease variant can inflate its long-run views; PeerSwap's churn handling is experimental. Paired confidence intervals have no multiple-comparison correction.</p>
+  </main>
+  <footer>
+    <p><a href="https://github.com/devos50/peer-samplers">Source, protocol details, and reproducibility instructions</a> · <a href="https://github.com/devos50/peer-samplers/tree/main/results/scaled/runs">All 990 compressed checkpoints</a> · <a href="https://github.com/devos50/peer-samplers/blob/main/results/README.md">Results inventory and provenance</a></p>
+  </footer>
+</body>
+</html>
