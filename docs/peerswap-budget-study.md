@@ -12,6 +12,8 @@ Admissions respect swap locks and reserve capacity for outstanding connections. 
 
 This is local recovery, not atomic commit. Repairs can change the graph's structure and sampling distribution. No claim of connectivity or uniformity under arbitrary churn follows from the static PeerSwap theorem. The baseline is the simulator's existing PeerSwap variant, including its documented join and timeout adaptations, rather than an exact reproduction of a fault-tolerant paper protocol.
 
+The [post-churn recovery analysis](peerswap-recovery-guarantee.md) gives a counterexample to guaranteed recovery in this implementation, then derives a conditional connectivity and uniformity guarantee for a proposed component-merge extension. That extension has not been implemented or included in these results.
+
 Wire-format choices also matter: this simulator's coordinator prepare/apply/ack exchange carries full neighborhood lists, whereas the [author implementation](https://github.com/sacs-epfl/peerswap/blob/c562d64e2f35b89ddab05b0255ade1f528298187/peerswap/simulation_lock.py) uses symmetric endpoint exchanges and smaller neighbor replacement messages. Communication rankings here apply to these simulator implementations, not a definitive comparison against the author's packet costs.
 
 ## Resource contract

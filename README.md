@@ -34,6 +34,8 @@ Open `results/comparison/report.html` directly in a browser. It contains scenari
 
 These are distinct algorithm implementations with documented simulation choices, not wrappers around a common shuffling algorithm. They are intended for controlled experimentation, not a claim to reproduce every paper's published measurements. The tests validate core behaviors and invariants; they do not establish the papers' mathematical guarantees. No Byzantine attackers are included in the current workloads.
 
+The [PeerSwap post-churn recovery analysis](docs/peerswap-recovery-guarantee.md) derives a bounded-degree component-merge rule, proves conditional recovery and convergence, and identifies the discovery, transaction, and scheduling changes needed to turn it into an implementation guarantee. It includes reproducible counterexamples for the current repair variant and an exhaustive small-graph checker.
+
 ## Experiments
 
 By default the CLI runs `static,churn,crash`. Available scenarios:
